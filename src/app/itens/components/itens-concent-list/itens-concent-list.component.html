@@ -1,1 +1,32 @@
-<p>itens-concent-list works!</p>
+<mat-table [dataSource]="itens">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Guia Column -->
+  <ng-container matColumnDef="guia">
+    <mat-header-cell *matHeaderCellDef> Guia</mat-header-cell>
+    <mat-cell *matCellDef="let item"> {{item.guia}} </mat-cell>
+  </ng-container>
+
+  <!-- Beneficiario Column -->
+  <ng-container matColumnDef="beneficiario">
+    <mat-header-cell *matHeaderCellDef> Beneficiário</mat-header-cell>
+    <mat-cell *matCellDef="let item"> {{item.beneficiario}} </mat-cell>
+  </ng-container>
+
+  <!-- Codigo Column -->
+  <ng-container matColumnDef="codigo">
+    <mat-header-cell *matHeaderCellDef> Código</mat-header-cell>
+    <mat-cell *matCellDef="let item"> {{item.codigo}} </mat-cell>
+  </ng-container>
+
+  <!-- Descricao Column -->
+  <ng-container matColumnDef="descricao">
+    <mat-header-cell *matHeaderCellDef> Descrição</mat-header-cell>
+    <mat-cell *matCellDef="let item"> {{item.descricao}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

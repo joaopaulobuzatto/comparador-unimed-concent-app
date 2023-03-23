@@ -4,9 +4,9 @@ export interface Response {
   totalItensUnimedProcessados: number;
   totalItensUnimedComSucesso: number;
   totalItensUnimedComDivergencia: number;
-  itensDivergenteOrigemUnimed: Array<Item>;
+  itensDivergenteOrigemUnimed: Item[];
   totalItensConcentProcessados: number;
   totalItensConcentComSucesso: number;
   totalItensConcentComDivergencia: number;
-  itensDivergenteOrigemConcent: Array<Item>;
+  itensDivergenteOrigemConcent: Item[];
 }

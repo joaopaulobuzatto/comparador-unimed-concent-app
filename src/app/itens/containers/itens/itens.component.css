@@ -1,8 +1,8 @@
-mat-card {
-  max-width: 80%;
-  margin: 2em auto;
-  text-align: center;
-}
+/*mat-card {*/
+/*  max-width: 80%;*/
+/*  margin: 2em auto;*/
+/*  text-align: center;*/
+/*}*/
 
 .column-flex {
   display: flex;
@@ -16,5 +16,31 @@ mat-card {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+mat-card {
+  max-width: 80%;
+  margin: 2em auto;
+}
+
+mat-card-actions {
+  padding: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.min-width {
+  width: 100%;
+  min-width: 150px;
+}
+
+.margin-left-5 {
+  margin-left: 5px;
+}
+
+.file-input {
+  display: none;
 }
 

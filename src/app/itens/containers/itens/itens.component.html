@@ -3,10 +3,49 @@
     <mat-toolbar color="primary">Itens</mat-toolbar>
 
     <div class="column-flex mat-elevation-z8">
-      <app-item-form></app-item-form>
+      <mat-card>
 
-      <app-itens-unimed-list></app-itens-unimed-list>
-      <app-itens-concent-list></app-itens-concent-list>
+        <mat-toolbar color="primary">Relatórios</mat-toolbar>
+
+        <mat-card-content>
+          <input type="file" class="file-input"
+                 (change)="onFileUnimedSelected($event)" #fileUnimedUpload>
+          <div class="file-upload">
+            {{fileNameUnimed || "Nenhum relatorio selecionado ainda."}}
+
+            <button mat-mini-fab color="primary" class="upload-btn"
+                    (click)="fileUnimedUpload.click()">
+              <mat-icon>attach_file</mat-icon>
+            </button>
+          </div>
+
+          <input type="file" class="file-input"
+                 (change)="onFileConcentSelected($event)" #fileConcentUpload>
+          <div class="file-upload">
+            {{fileNameConcent || "Nenhum relatorio selecionado ainda."}}
+
+            <button mat-mini-fab color="primary" class="upload-btn"
+                    (click)="fileConcentUpload.click()">
+              <mat-icon>attach_file</mat-icon>
+            </button>
+          </div>
+
+        </mat-card-content>
+
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="onSubmit()">Processar</button>
+          <button mat-raised-button (click)="onCancel()" class="margin-left-5">Cancelar</button>
+        </mat-card-actions>
+
+      </mat-card>
+
+
+      <app-itens-unimed-list
+        [itens]="itensDivergenteOrigemUnimed"
+      ></app-itens-unimed-list>
+      <app-itens-concent-list
+        [itens]="itensDivergenteOrigemConcent"
+      ></app-itens-concent-list>
     </div>
   </mat-card-content>
 </mat-card>
