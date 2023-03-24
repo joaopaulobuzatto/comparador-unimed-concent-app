@@ -1,36 +1,29 @@
-.column-flex {
-  display: flex;
-  flex-direction: column;
-  min-width: 300px;
-}
-
-.loading-spinner {
-  padding: 25px;
-  background: rgba(0, 0, 0, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-mat-card {
-  margin: 2em auto;
-}
-
-mat-card-actions {
-  padding: 16px;
-}
-
 .full-width {
   width: 100%;
 }
 
-.min-width {
-  width: 100%;
-  min-width: 150px;
+.shipping-card {
+  min-width: 120px;
+  margin: 20px auto;
 }
 
-.margin-left-5 {
-  margin-left: 5px;
+.mat-radio-button {
+  display: block;
+  margin: 5px 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.col:last-child {
+  margin-right: 0;
 }
 
 .file-input {

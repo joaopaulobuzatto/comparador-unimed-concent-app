@@ -1,9 +1,10 @@
-<mat-card>
+<mat-card class="shipping-card">
+  <mat-card-header>
+    <mat-card-title>Processa divergência entre os relatórios</mat-card-title>
+  </mat-card-header>
   <mat-card-content>
-    <mat-toolbar color="primary">Relatórios</mat-toolbar>
-
-    <div class="column-flex mat-elevation-z8">
-      <mat-card-content>
+    <div class="row">
+      <div class="col">
         <label>Relatório Unimed</label>
         <input type="file" class="file-input"
                (change)="onFileUnimedSelected($event)" #fileUnimedUpload>
@@ -15,10 +16,8 @@
             <mat-icon>attach_file</mat-icon>
           </button>
         </div>
-
-        <br>
-        <br>
-
+      </div>
+      <div class="col">
         <label>Relatório Concent</label>
         <input type="file" class="file-input"
                (change)="onFileConcentSelected($event)" #fileConcentUpload>
@@ -30,32 +29,24 @@
             <mat-icon>attach_file</mat-icon>
           </button>
         </div>
-      </mat-card-content>
-
-      <br>
-
-      <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="onSubmit()">Processar</button>
-        <button mat-raised-button (click)="onCancel()" class="margin-left-5">Cancelar</button>
-      </mat-card-actions>
-
-      <mat-divider></mat-divider>
-
-      <mat-tab-group *ngIf="finishProccess">
-        <mat-tab label="Unimed">
-          <p>Itens não encontrados no relatório do Concent.</p>
-          <app-itens-unimed-list
-            [itens]="itensDivergenteOrigemUnimed"
-          ></app-itens-unimed-list>
-        </mat-tab>
-        <mat-tab label="Concent">
-          <p>Itens não encontrados no relatório da Unimed.</p>
-          <app-itens-concent-list
-            [itens]="itensDivergenteOrigemConcent"
-          ></app-itens-concent-list>
-        </mat-tab>
-      </mat-tab-group>
-
+      </div>
     </div>
   </mat-card-content>
+  <mat-card-actions>
+    <!--      <button mat-raised-button color="primary" type="submit">Submit</button>-->
+    <button mat-raised-button color="primary" (click)="onSubmit()">Processar</button>
+  </mat-card-actions>
+  <mat-divider></mat-divider>
+  <mat-tab-group *ngIf="finishProccess">
+    <mat-tab label="Unimed">
+      <app-itens-unimed-list
+        [itens]="itensDivergenteOrigemUnimed"
+      ></app-itens-unimed-list>
+    </mat-tab>
+    <mat-tab label="Concent">
+      <app-itens-concent-list
+        [itens]="itensDivergenteOrigemConcent"
+      ></app-itens-concent-list>
+    </mat-tab>
+  </mat-tab-group>
 </mat-card>
