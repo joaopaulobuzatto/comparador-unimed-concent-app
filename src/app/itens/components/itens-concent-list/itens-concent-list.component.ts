@@ -11,7 +11,7 @@ export class ItensConcentListComponent implements OnInit {
 
   @Input() itens: Item[] = [];
 
-  readonly displayedColumns = ['guia', 'beneficiario', 'codigo', 'descricao'];
+  readonly displayedColumns = ['requisicao', 'guia', 'beneficiario', 'codigo', 'descricao'];
 
   ngOnInit(): void {
   }

@@ -1,51 +1,59 @@
 <mat-card>
   <mat-card-content>
-    <mat-toolbar color="primary">Itens</mat-toolbar>
+    <mat-toolbar color="primary">Relatórios</mat-toolbar>
 
     <div class="column-flex mat-elevation-z8">
-      <mat-card>
+      <mat-card-content>
+        <label>Relatório Unimed</label>
+        <input type="file" class="file-input"
+               (change)="onFileUnimedSelected($event)" #fileUnimedUpload>
+        <div class="file-upload">
+          {{fileNameUnimed || ""}}
 
-        <mat-toolbar color="primary">Relatórios</mat-toolbar>
+          <button mat-mini-fab color="primary" class="upload-btn"
+                  (click)="fileUnimedUpload.click()">
+            <mat-icon>attach_file</mat-icon>
+          </button>
+        </div>
 
-        <mat-card-content>
-          <input type="file" class="file-input"
-                 (change)="onFileUnimedSelected($event)" #fileUnimedUpload>
-          <div class="file-upload">
-            {{fileNameUnimed || "Nenhum relatorio selecionado ainda."}}
+        <br>
+        <br>
 
-            <button mat-mini-fab color="primary" class="upload-btn"
-                    (click)="fileUnimedUpload.click()">
-              <mat-icon>attach_file</mat-icon>
-            </button>
-          </div>
+        <label>Relatório Concent</label>
+        <input type="file" class="file-input"
+               (change)="onFileConcentSelected($event)" #fileConcentUpload>
+        <div class="file-upload">
+          {{fileNameConcent || ""}}
 
-          <input type="file" class="file-input"
-                 (change)="onFileConcentSelected($event)" #fileConcentUpload>
-          <div class="file-upload">
-            {{fileNameConcent || "Nenhum relatorio selecionado ainda."}}
+          <button mat-mini-fab color="primary" class="upload-btn"
+                  (click)="fileConcentUpload.click()">
+            <mat-icon>attach_file</mat-icon>
+          </button>
+        </div>
+      </mat-card-content>
 
-            <button mat-mini-fab color="primary" class="upload-btn"
-                    (click)="fileConcentUpload.click()">
-              <mat-icon>attach_file</mat-icon>
-            </button>
-          </div>
+      <br>
 
-        </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="onSubmit()">Processar</button>
+        <button mat-raised-button (click)="onCancel()" class="margin-left-5">Cancelar</button>
+      </mat-card-actions>
 
-        <mat-card-actions>
-          <button mat-raised-button color="primary" (click)="onSubmit()">Processar</button>
-          <button mat-raised-button (click)="onCancel()" class="margin-left-5">Cancelar</button>
-        </mat-card-actions>
+      <mat-tab-group *ngIf="finishProccess">
+        <mat-tab label="Unimed">
+          <p>Itens não encontrados no relatório do Concent.</p>
+          <app-itens-unimed-list
+            [itens]="itensDivergenteOrigemUnimed"
+          ></app-itens-unimed-list>
+        </mat-tab>
+        <mat-tab label="Concent">
+          <p>Itens não encontrados no relatório da Unimed.</p>
+          <app-itens-concent-list
+            [itens]="itensDivergenteOrigemConcent"
+          ></app-itens-concent-list>
+        </mat-tab>
+      </mat-tab-group>
 
-      </mat-card>
-
-
-      <app-itens-unimed-list
-        [itens]="itensDivergenteOrigemUnimed"
-      ></app-itens-unimed-list>
-      <app-itens-concent-list
-        [itens]="itensDivergenteOrigemConcent"
-      ></app-itens-concent-list>
     </div>
   </mat-card-content>
 </mat-card>

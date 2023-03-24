@@ -18,6 +18,8 @@ export class ItensComponent {
   private fileUnimed: any;
   private fileConcent: any;
 
+  finishProccess: boolean = false;
+
   itensDivergenteOrigemUnimed: Item[] = [];
   itensDivergenteOrigemConcent: Item[] = [];
 
@@ -26,22 +28,6 @@ export class ItensComponent {
   }
 
   ngOnInit(): void {
-  }
-
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    console.log(file);
-
-    if (file) {
-
-      this.fileName = file.name;
-
-      const formData = new FormData();
-      formData.append("thumbnail", file);
-
-      // const upload$ = this.http.post("/api/thumbnail-upload", formData);
-      // upload$.subscribe();
-    }
   }
 
   onFileUnimedSelected(event: any) {
@@ -71,8 +57,10 @@ export class ItensComponent {
         result => {
           this.itensDivergenteOrigemUnimed = result.itensDivergenteOrigemUnimed;
           this.itensDivergenteOrigemConcent = result.itensDivergenteOrigemConcent;
+          this.finishProccess = true;
           this.onSuccess();
         }, error => {
+          this.finishProccess = true;
           this.onError();
         });
   }
