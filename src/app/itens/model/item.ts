@@ -5,4 +5,5 @@ export interface Item {
   beneficiario: string;
   codigo: string;
   descricao: string;
+  quantidade: string;
 }

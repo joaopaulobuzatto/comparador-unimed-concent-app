@@ -12,7 +12,7 @@ export class ItensConcentListComponent implements OnInit {
 
   @Input() itens: Item[] = [];
 
-  readonly displayedColumns = ['requisicao', 'guia', 'beneficiario', 'codigo', 'descricao'];
+  readonly displayedColumns = ['requisicao', 'guia', 'beneficiario', 'codigo', 'descricao', 'quantidade'];
 
   constructor(private excelService: ExcelService) {
   }
@@ -21,7 +21,7 @@ export class ItensConcentListComponent implements OnInit {
   }
 
   exportExcel() {
-    let header = ['requisicao', 'guia', 'beneficiario', 'codigo', 'descricao'];
+    let header = ['requisicao', 'guia', 'beneficiario', 'codigo', 'descricao', 'quantidade'];
     this.excelService.exportExcel(this.itens, header, 'erros-concent');
   }
 
