@@ -9,6 +9,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { ItemFormComponent } from './item-form/item-form.component';
 import { ItensUnimedListComponent } from './components/itens-unimed-list/itens-unimed-list.component';
 import { ItensConcentListComponent } from './components/itens-concent-list/itens-concent-list.component';
+import { ComparaConcentComponent } from './components/compara-concent/compara-concent.component';
+import { ComparaNetrisComponent } from './components/compara-netris/compara-netris.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { ItensConcentListComponent } from './components/itens-concent-list/itens
     ItensComponent,
     ItemFormComponent,
     ItensUnimedListComponent,
-    ItensConcentListComponent
+    ItensConcentListComponent,
+    ComparaConcentComponent,
+    ComparaNetrisComponent
   ],
   imports: [
     CommonModule,

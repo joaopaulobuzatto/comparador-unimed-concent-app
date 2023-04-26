@@ -1,43 +1,32 @@
-import {Component, OnInit} from '@angular/core';
-import {MatSnackBar} from '@angular/material/snack-bar';
-
-import {ItensService} from '../service/itens.service';
+import {Component} from '@angular/core';
+import {Item} from "../../model/item";
+import {ItensService} from "../../service/itens.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
-  selector: 'app-item-form',
-  templateUrl: './item-form.component.html',
-  styleUrls: ['./item-form.component.css']
+  selector: 'app-compara-netris',
+  templateUrl: './compara-netris.component.html',
+  styleUrls: ['./compara-netris.component.css']
 })
-export class ItemFormComponent implements OnInit {
+export class ComparaNetrisComponent {
 
   fileName = '';
   fileNameUnimed = '';
-  fileNameConcent = '';
+  fileNameNetRis = '';
 
   private fileUnimed: any;
-  private fileConcent: any;
+  private fileNetRis: any;
+
+  finishProccess: boolean = false;
+
+  itensDivergenteOrigemUnimed: Item[] = [];
+  itensDivergenteOrigemNetRis: Item[] = [];
 
   constructor(private service: ItensService,
               private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
-  }
-
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    console.log(file);
-
-    if (file) {
-
-      this.fileName = file.name;
-
-      const formData = new FormData();
-      formData.append("thumbnail", file);
-
-      // const upload$ = this.http.post("/api/thumbnail-upload", formData);
-      // upload$.subscribe();
-    }
   }
 
   onFileUnimedSelected(event: any) {
@@ -50,23 +39,27 @@ export class ItemFormComponent implements OnInit {
     }
   }
 
-  onFileConcentSelected(event: any) {
+  onFileNetRisSelected(event: any) {
     const file: File = event.target.files[0];
     console.log(file);
 
     if (file) {
-      this.fileNameConcent = file.name;
-      this.fileConcent = file;
+      this.fileNameNetRis = file.name;
+      this.fileNetRis = file;
     }
   }
 
   onSubmit() {
     console.log('onSubmit');
-    this.service.comparaUnimedConcent(this.fileUnimed, this.fileConcent)
+    this.service.comparaUnimedNetRis(this.fileUnimed, this.fileNetRis)
       .subscribe(
         result => {
+          this.itensDivergenteOrigemUnimed = result.itensDivergenteOrigemUnimed;
+          this.itensDivergenteOrigemNetRis = result.itensDivergenteOrigemNetRis;
+          this.finishProccess = true;
           this.onSuccess();
         }, error => {
+          this.finishProccess = true;
           this.onError();
         });
   }
@@ -74,7 +67,7 @@ export class ItemFormComponent implements OnInit {
   onCancel() {
     console.log('onCancel');
     this.fileUnimed = null;
-    this.fileConcent = null;
+    this.fileNetRis = null;
   }
 
   onSuccess() {

@@ -9,4 +9,8 @@ export interface Response {
   totalItensConcentComSucesso: number;
   totalItensConcentComDivergencia: number;
   itensDivergenteOrigemConcent: Item[];
+  totalItensNetRisProcessados: number;
+  totalItensNetRisComSucesso: number;
+  totalItensNetRisComDivergencia: number;
+  itensDivergenteOrigemNetRis: Item[];
 }

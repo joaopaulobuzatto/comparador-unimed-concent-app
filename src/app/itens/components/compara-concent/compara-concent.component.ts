@@ -1,14 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
-import {ItensService} from '../service/itens.service';
+import {ItensService} from '../../service/itens.service';
+import {Item} from '../../model/item';
 
 @Component({
-  selector: 'app-item-form',
-  templateUrl: './item-form.component.html',
-  styleUrls: ['./item-form.component.css']
+  selector: 'app-compara-concent',
+  templateUrl: './compara-concent.component.html',
+  styleUrls: ['./compara-concent.component.css']
 })
-export class ItemFormComponent implements OnInit {
+export class ComparaConcentComponent implements OnInit {
 
   fileName = '';
   fileNameUnimed = '';
@@ -17,27 +18,16 @@ export class ItemFormComponent implements OnInit {
   private fileUnimed: any;
   private fileConcent: any;
 
+  finishProccess: boolean = false;
+
+  itensDivergenteOrigemUnimed: Item[] = [];
+  itensDivergenteOrigemConcent: Item[] = [];
+
   constructor(private service: ItensService,
               private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
-  }
-
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    console.log(file);
-
-    if (file) {
-
-      this.fileName = file.name;
-
-      const formData = new FormData();
-      formData.append("thumbnail", file);
-
-      // const upload$ = this.http.post("/api/thumbnail-upload", formData);
-      // upload$.subscribe();
-    }
   }
 
   onFileUnimedSelected(event: any) {
@@ -65,8 +55,12 @@ export class ItemFormComponent implements OnInit {
     this.service.comparaUnimedConcent(this.fileUnimed, this.fileConcent)
       .subscribe(
         result => {
+          this.itensDivergenteOrigemUnimed = result.itensDivergenteOrigemUnimed;
+          this.itensDivergenteOrigemConcent = result.itensDivergenteOrigemConcent;
+          this.finishProccess = true;
           this.onSuccess();
         }, error => {
+          this.finishProccess = true;
           this.onError();
         });
   }
@@ -89,5 +83,4 @@ export class ItemFormComponent implements OnInit {
       duration: 3000
     });
   }
-
 }

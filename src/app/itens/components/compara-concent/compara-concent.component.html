@@ -1,0 +1,51 @@
+<mat-card class="shipping-card">
+  <mat-card-header>
+    <mat-card-title>Processa divergência entre Unimed e Concent</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="row">
+      <div class="col">
+        <label>Relatório Unimed</label>
+        <input type="file" class="file-input"
+               (change)="onFileUnimedSelected($event)" #fileUnimedUpload>
+        <div class="file-upload">
+          {{fileNameUnimed || ""}}
+
+          <button mat-mini-fab color="primary" class="upload-btn"
+                  (click)="fileUnimedUpload.click()">
+            <mat-icon>attach_file</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="col">
+        <label>Relatório Concent</label>
+        <input type="file" class="file-input"
+               (change)="onFileConcentSelected($event)" #fileConcentUpload>
+        <div class="file-upload">
+          {{fileNameConcent || ""}}
+
+          <button mat-mini-fab color="primary" class="upload-btn"
+                  (click)="fileConcentUpload.click()">
+            <mat-icon>attach_file</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="onSubmit()">Processar</button>
+  </mat-card-actions>
+  <mat-divider></mat-divider>
+  <mat-tab-group *ngIf="finishProccess">
+    <mat-tab label="Unimed">
+      <app-itens-unimed-list
+        [itens]="itensDivergenteOrigemUnimed"
+      ></app-itens-unimed-list>
+    </mat-tab>
+    <mat-tab label="Concent">
+      <app-itens-concent-list
+        [itens]="itensDivergenteOrigemConcent"
+      ></app-itens-concent-list>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>
