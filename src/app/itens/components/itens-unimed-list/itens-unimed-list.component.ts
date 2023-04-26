@@ -12,6 +12,7 @@ import {ExcelService} from '../../../shared/services/excel.service';
 export class ItensUnimedListComponent implements OnInit {
 
   @Input() itens: Item[] = [];
+  @Input() empresa: string = '';
 
   readonly displayedColumns = ['requisicao', 'guia', 'beneficiario', 'codigo', 'descricao', 'quantidade'];
 
@@ -23,7 +24,7 @@ export class ItensUnimedListComponent implements OnInit {
 
   exportExcel() {
     let header = ['requisicao', 'guia', 'beneficiario', 'codigo', 'descricao', 'quantidade'];
-    this.excelService.exportExcel(this.itens, header, 'erros-unimed');
+    this.excelService.exportExcel(this.itens, header, `erros-unimed-${this.empresa}`);
   }
 
 }

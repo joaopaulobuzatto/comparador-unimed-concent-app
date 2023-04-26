@@ -40,11 +40,13 @@
     <mat-tab label="Unimed">
       <app-itens-unimed-list
         [itens]="itensDivergenteOrigemUnimed"
+        [empresa]="'laboratorio'"
       ></app-itens-unimed-list>
     </mat-tab>
     <mat-tab label="Concent">
       <app-itens-concent-list
         [itens]="itensDivergenteOrigemConcent"
+        [sistemaComparado]="'concent'"
       ></app-itens-concent-list>
     </mat-tab>
   </mat-tab-group>

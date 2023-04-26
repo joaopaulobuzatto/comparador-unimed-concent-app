@@ -40,11 +40,13 @@
     <mat-tab label="Unimed">
       <app-itens-unimed-list
         [itens]="itensDivergenteOrigemUnimed"
+        [empresa]="'imagem'"
       ></app-itens-unimed-list>
     </mat-tab>
     <mat-tab label="NetRis">
       <app-itens-concent-list
         [itens]="itensDivergenteOrigemNetRis"
+        [sistemaComparado]="'netris'"
       ></app-itens-concent-list>
     </mat-tab>
   </mat-tab-group>
