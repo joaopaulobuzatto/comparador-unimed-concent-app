@@ -3,6 +3,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 
 import {ItensService} from '../../service/itens.service';
 import {Item} from '../../model/item';
+import {Response} from "../../model/response";
 
 @Component({
   selector: 'app-compara-concent',
@@ -20,7 +21,13 @@ export class ComparaConcentComponent implements OnInit {
 
   finishProccess: boolean = false;
 
+  totalItensUnimedProcessados: number = 0;
+  totalItensUnimedComSucesso: number = 0;
+  totalItensUnimedComDivergencia: number = 0;
   itensDivergenteOrigemUnimed: Item[] = [];
+  totalItensConcentProcessados: number = 0;
+  totalItensConcentComSucesso: number = 0;
+  totalItensConcentComDivergencia: number = 0;
   itensDivergenteOrigemConcent: Item[] = [];
 
   constructor(private service: ItensService,
@@ -55,7 +62,13 @@ export class ComparaConcentComponent implements OnInit {
     this.service.comparaUnimedConcent(this.fileUnimed, this.fileConcent)
       .subscribe(
         result => {
+          this.totalItensUnimedProcessados = result.totalItensUnimedProcessados;
+          this.totalItensUnimedComSucesso = result.totalItensUnimedComSucesso;
+          this.totalItensUnimedComDivergencia = result.totalItensUnimedComDivergencia;
           this.itensDivergenteOrigemUnimed = result.itensDivergenteOrigemUnimed;
+          this.totalItensConcentProcessados = result.totalItensConcentProcessados;
+          this.totalItensConcentComSucesso = result.totalItensConcentComSucesso;
+          this.totalItensConcentComDivergencia = result.totalItensConcentComDivergencia;
           this.itensDivergenteOrigemConcent = result.itensDivergenteOrigemConcent;
           this.finishProccess = true;
           this.onSuccess();

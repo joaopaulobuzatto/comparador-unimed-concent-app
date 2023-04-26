@@ -30,3 +30,6 @@
   display: none;
 }
 
+.bold-text {
+  font-weight: bold;
+}

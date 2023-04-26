@@ -38,12 +38,24 @@
   <mat-divider></mat-divider>
   <mat-tab-group *ngIf="finishProccess">
     <mat-tab label="Unimed">
+      <div>
+        <h3>Total de exames processados: <span class="bold-text">{{totalItensUnimedProcessados}}</span></h3>
+        <h3>Total de exames com sucesso: <span class="bold-text">{{totalItensUnimedComSucesso}}</span></h3>
+        <h3>Total de exames com divergência: <span class="bold-text">{{totalItensUnimedComDivergencia}}</span></h3>
+      </div>
+
       <app-itens-unimed-list
         [itens]="itensDivergenteOrigemUnimed"
         [empresa]="'imagem'"
       ></app-itens-unimed-list>
     </mat-tab>
     <mat-tab label="NetRis">
+      <div>
+        <h3>Total de exames processados: <span class="bold-text">{{totalItensNetRisProcessados}}</span></h3>
+        <h3>Total de exames com sucesso: <span class="bold-text">{{totalItensNetRisComSucesso}}</span></h3>
+        <h3>Total de exames com divergência: <span class="bold-text">{{totalItensNetRisComDivergencia}}</span></h3>
+      </div>
+
       <app-itens-concent-list
         [itens]="itensDivergenteOrigemNetRis"
         [sistemaComparado]="'netris'"

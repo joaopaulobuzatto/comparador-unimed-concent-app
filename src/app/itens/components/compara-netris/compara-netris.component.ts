@@ -19,7 +19,13 @@ export class ComparaNetrisComponent {
 
   finishProccess: boolean = false;
 
+  totalItensUnimedProcessados: number = 0;
+  totalItensUnimedComSucesso: number = 0;
+  totalItensUnimedComDivergencia: number = 0;
   itensDivergenteOrigemUnimed: Item[] = [];
+  totalItensNetRisProcessados: number = 0;
+  totalItensNetRisComSucesso: number = 0;
+  totalItensNetRisComDivergencia: number = 0;
   itensDivergenteOrigemNetRis: Item[] = [];
 
   constructor(private service: ItensService,
@@ -54,7 +60,13 @@ export class ComparaNetrisComponent {
     this.service.comparaUnimedNetRis(this.fileUnimed, this.fileNetRis)
       .subscribe(
         result => {
+          this.totalItensUnimedProcessados = result.totalItensUnimedProcessados;
+          this.totalItensUnimedComSucesso = result.totalItensUnimedComSucesso;
+          this.totalItensUnimedComDivergencia = result.totalItensUnimedComDivergencia;
           this.itensDivergenteOrigemUnimed = result.itensDivergenteOrigemUnimed;
+          this.totalItensNetRisProcessados = result.totalItensNetRisProcessados;
+          this.totalItensNetRisComSucesso = result.totalItensNetRisComSucesso;
+          this.totalItensNetRisComDivergencia = result.totalItensNetRisComDivergencia;
           this.itensDivergenteOrigemNetRis = result.itensDivergenteOrigemNetRis;
           this.finishProccess = true;
           this.onSuccess();
