@@ -19,7 +19,8 @@ export class ComparaConcentComponent implements OnInit {
   private fileUnimed: any;
   private fileConcent: any;
 
-  finishProccess: boolean = false;
+  startRequestSubmit: boolean = false;
+  finishRequestSubmit: boolean = false;
 
   totalItensUnimedProcessados: number = 0;
   totalItensUnimedComSucesso: number = 0;
@@ -59,6 +60,7 @@ export class ComparaConcentComponent implements OnInit {
 
   onSubmit() {
     console.log('onSubmit');
+    this.startRequestSubmit = true;
     this.service.comparaUnimedConcent(this.fileUnimed, this.fileConcent)
       .subscribe(
         result => {
@@ -70,10 +72,12 @@ export class ComparaConcentComponent implements OnInit {
           this.totalItensConcentComSucesso = result.totalItensConcentComSucesso;
           this.totalItensConcentComDivergencia = result.totalItensConcentComDivergencia;
           this.itensDivergenteOrigemConcent = result.itensDivergenteOrigemConcent;
-          this.finishProccess = true;
+          this.startRequestSubmit = false;
+          this.finishRequestSubmit = true;
           this.onSuccess();
         }, error => {
-          this.finishProccess = true;
+          this.startRequestSubmit = false;
+          this.finishRequestSubmit = true;
           this.onError();
         });
   }

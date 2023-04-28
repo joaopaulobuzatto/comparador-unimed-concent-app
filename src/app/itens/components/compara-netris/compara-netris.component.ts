@@ -17,7 +17,8 @@ export class ComparaNetrisComponent {
   private fileUnimed: any;
   private fileNetRis: any;
 
-  finishProccess: boolean = false;
+  startRequestSubmit: boolean = false;
+  finishRequestSubmit: boolean = false;
 
   totalItensUnimedProcessados: number = 0;
   totalItensUnimedComSucesso: number = 0;
@@ -57,6 +58,7 @@ export class ComparaNetrisComponent {
 
   onSubmit() {
     console.log('onSubmit');
+    this.startRequestSubmit = true;
     this.service.comparaUnimedNetRis(this.fileUnimed, this.fileNetRis)
       .subscribe(
         result => {
@@ -68,10 +70,12 @@ export class ComparaNetrisComponent {
           this.totalItensNetRisComSucesso = result.totalItensNetRisComSucesso;
           this.totalItensNetRisComDivergencia = result.totalItensNetRisComDivergencia;
           this.itensDivergenteOrigemNetRis = result.itensDivergenteOrigemNetRis;
-          this.finishProccess = true;
+          this.startRequestSubmit = false;
+          this.finishRequestSubmit = true;
           this.onSuccess();
         }, error => {
-          this.finishProccess = true;
+          this.startRequestSubmit = false;
+          this.finishRequestSubmit = true;
           this.onError();
         });
   }

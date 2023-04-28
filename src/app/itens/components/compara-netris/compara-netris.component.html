@@ -2,41 +2,50 @@
   <mat-card-header>
     <mat-card-title>Processa divergência entre Unimed e NetRis</mat-card-title>
   </mat-card-header>
-  <mat-card-content>
-    <div class="row">
-      <div class="col">
-        <label>Relatório Unimed</label>
-        <input type="file" class="file-input"
-               (change)="onFileUnimedSelected($event)" #fileUnimedUpload>
-        <div class="file-upload">
-          {{fileNameUnimed || ""}}
 
-          <button mat-mini-fab color="primary" class="upload-btn"
-                  (click)="fileUnimedUpload.click()">
-            <mat-icon>attach_file</mat-icon>
-          </button>
+  <div *ngIf="!startRequestSubmit">
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <label>Relatório Unimed</label>
+          <input type="file" class="file-input"
+                 (change)="onFileUnimedSelected($event)" #fileUnimedUpload>
+          <div class="file-upload">
+            {{fileNameUnimed || ""}}
+
+            <button mat-mini-fab color="primary" class="upload-btn"
+                    (click)="fileUnimedUpload.click()">
+              <mat-icon>attach_file</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <label>Relatório NetRis</label>
+          <input type="file" class="file-input"
+                 (change)="onFileNetRisSelected($event)" #fileNetRisUpload>
+          <div class="file-upload">
+            {{fileNameNetRis || ""}}
+
+            <button mat-mini-fab color="primary" class="upload-btn"
+                    (click)="fileNetRisUpload.click()">
+              <mat-icon>attach_file</mat-icon>
+            </button>
+          </div>
         </div>
       </div>
-      <div class="col">
-        <label>Relatório NetRis</label>
-        <input type="file" class="file-input"
-               (change)="onFileNetRisSelected($event)" #fileNetRisUpload>
-        <div class="file-upload">
-          {{fileNameNetRis || ""}}
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="onSubmit()">Processar</button>
+    </mat-card-actions>
+  </div>
 
-          <button mat-mini-fab color="primary" class="upload-btn"
-                  (click)="fileNetRisUpload.click()">
-            <mat-icon>attach_file</mat-icon>
-          </button>
-        </div>
-      </div>
-    </div>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="onSubmit()">Processar</button>
-  </mat-card-actions>
+  <div class="loading-spinner" *ngIf="startRequestSubmit">
+    <mat-spinner></mat-spinner>
+  </div>
+
   <mat-divider></mat-divider>
-  <mat-tab-group *ngIf="finishProccess">
+
+  <mat-tab-group *ngIf="finishRequestSubmit">
     <mat-tab label="Unimed">
       <div>
         <h3>Total de exames processados: <span class="bold-text">{{totalItensUnimedProcessados}}</span></h3>
