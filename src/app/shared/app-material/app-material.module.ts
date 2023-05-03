@@ -13,6 +13,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   exports: [
@@ -29,7 +30,8 @@ import {MatDividerModule} from '@angular/material/divider';
     MatSelectModule,
     MatSnackBarModule,
     MatTabsModule,
-    MatDividerModule
+    MatDividerModule,
+    MatGridListModule
   ],
 })
 export class AppMaterialModule {

@@ -11,6 +11,7 @@ import {ExcelService} from "../../../shared/services/excel.service";
 export class ItensConcentListComponent implements OnInit {
 
   @Input() itens: Item[] = [];
+  @Input() sistemaComparado: string = '';
 
   readonly displayedColumns = ['requisicao', 'guia', 'beneficiario', 'codigo', 'descricao', 'quantidade'];
 
@@ -22,7 +23,7 @@ export class ItensConcentListComponent implements OnInit {
 
   exportExcel() {
     let header = ['requisicao', 'guia', 'beneficiario', 'codigo', 'descricao', 'quantidade'];
-    this.excelService.exportExcel(this.itens, header, 'erros-concent');
+    this.excelService.exportExcel(this.itens, header, `erros-${this.sistemaComparado}`);
   }
 
 }

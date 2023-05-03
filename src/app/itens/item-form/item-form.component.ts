@@ -62,7 +62,7 @@ export class ItemFormComponent implements OnInit {
 
   onSubmit() {
     console.log('onSubmit');
-    this.service.proccessFiles(this.fileUnimed, this.fileConcent)
+    this.service.comparaUnimedConcent(this.fileUnimed, this.fileConcent)
       .subscribe(
         result => {
           this.onSuccess();
